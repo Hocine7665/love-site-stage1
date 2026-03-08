@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>موقع التفاعل الثلاثي</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    font-family: Arial, sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .container {
+    display: flex;
+    gap: 20px;
+  }
+
+  .item {
+    text-align: center;
+    cursor: pointer; /* لتوضيح أن الصورة قابلة للنقر */
+  }
+
+  .item img {
+    width: 150px;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.2s;
+  }
+
+  .item img:hover {
+    transform: scale(1.1); /* تأثير بسيط عند المرور */
+  }
+
+  .item p {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+
+  #message {
+    position: absolute;
+    top: 80%;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    color: yellow; /* النص الناتج يكون باللون الأصفر */
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="item" onclick="checkCode(1)">
+    <img src="images/image1.png" alt="صورة 1">
+    <p>حفصة</p>
+  </div>
+  <div class="item" onclick="checkCode(2)">
+    <img src="images/image2.png" alt="صورة 2">
+    <p>غيلاس</p>
+  </div>
+  <div class="item" onclick="checkCode(3)">
+    <img src="images/image3.png" alt="صورة 3">
+    <p>فراح</p>
+  </div>
+</div>
+
+<div id="message"></div>
+
+<script>
+  // الكود الصحيح لكل صورة
+  const codes = {
+    1: "123", // الكود للصورة 1
+    2: "456", // الكود للصورة 2
+    3: "789"  // الكود للصورة 3
+  };
+
+  // النص الذي يظهر عند الكود الصحيح
+  const successMessages = {
+    1: "مرحبا حفصة! هذا نص الصورة الأولى",
+    2: "مرحبا غيلاس! هذا نص الصورة الثانية",
+    3: "مرحبا فراح! هذا نص الصورة الثالثة"
+  };
+
+  // رسالة الخطأ
+  const errorMessage = "الكود خاطئ! حاول مرة أخرى";
+
+  function checkCode(imageNumber) {
+    const userCode = prompt("ادخل الكود للصورة المختارة:");
+    const messageDiv = document.getElementById("message");
+
+    if (userCode === codes[imageNumber]) {
+      messageDiv.textContent = successMessages[imageNumber];
+    } else {
+      messageDiv.textContent = errorMessage;
+    }
+  }
+</script>
+
+</body>
+</html>
